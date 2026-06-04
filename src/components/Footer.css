@@ -1,0 +1,51 @@
+/* 푸터 — 중앙 정렬, 상단 경계선 */
+.footer {
+  border-top: 1px solid var(--border);
+  background-color: var(--surface);
+  transition: background-color 0.3s ease;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+}
+
+.footer-title {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.footer-desc {
+  color: var(--text-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-link {
+  font-weight: 600;
+  color: var(--accent);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.footer-link:hover {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+}
+
+.footer-copy {
+  margin-top: var(--space-4);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

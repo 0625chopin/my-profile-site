@@ -1,0 +1,143 @@
+/* ============================================
+   디자인 토큰 — 테마별 색상 + 공통 스케일
+   ============================================ */
+
+:root {
+  /* 간격 스케일 (4px 기반) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* 모서리 반경 */
+  --radius: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* 타이포그래피 */
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+
+  /* 레이아웃 */
+  --container-width: 1080px;
+  --header-height: 68px;
+}
+
+/* 다크 테마 (기본) */
+:root[data-theme='dark'] {
+  --bg: #0b0f0e;
+  --surface: #121815;
+  --surface-2: #1a221e;
+  --text: #f2f5f3;
+  --text-muted: #9aa6a0;
+  --accent: #34d399;
+  --accent-strong: #10b981;
+  --accent-soft: rgba(52, 211, 153, 0.12);
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}
+
+/* 라이트 테마 */
+:root[data-theme='light'] {
+  --bg: #f7faf8;
+  --surface: #ffffff;
+  --surface-2: #eef3f0;
+  --text: #16201b;
+  --text-muted: #5d6b64;
+  --accent: #0e9f6e;
+  --accent-strong: #057a55;
+  --accent-soft: rgba(14, 159, 110, 0.1);
+  --border: rgba(22, 32, 27, 0.1);
+  --shadow: 0 8px 32px rgba(22, 32, 27, 0.08);
+  color-scheme: light;
+}
+
+/* ============================================
+   전역 리셋 + 베이스
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* 앵커 이동 시 고정 헤더에 가려지지 않도록 */
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================
+   공통 레이아웃 유틸리티
+   ============================================ */
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding-inline: var(--space-5);
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+/* 섹션 타이틀 공통 스타일 */
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-7);
+}
+
+.section-title .eyebrow {
+  display: block;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.section-title h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
