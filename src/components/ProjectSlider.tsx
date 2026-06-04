@@ -10,8 +10,8 @@ interface ProjectSliderProps {
   onSelectTech: (name: string) => void;
 }
 
-/** 노출 대상 프로젝트 (status 1: 목록, 2: 목록 + 상세) */
-const visibleProjects = projects.filter((project) => project.status !== 0);
+/** 노출 대상 프로젝트 (status 1만 — 0 숨김, 2 보관) */
+const visibleProjects = projects.filter((project) => project.status === 1);
 
 /** 참여 프로젝트를 한 장씩 보여주는 슬라이더 (이전/다음 + 도트 + 카운터) */
 export function ProjectSlider({ selectedTechs, onSelectTech }: ProjectSliderProps) {
@@ -35,12 +35,12 @@ export function ProjectSlider({ selectedTechs, onSelectTech }: ProjectSliderProp
           <div className="slider-track" style={{ transform: `translateX(-${index * 100}%)` }}>
             {visibleProjects.map((project) => (
               <article key={project.id} className="slide">
-                {/* 공용 카드 — status 2면 프로젝트명이 상세 페이지 링크 */}
+                {/* 공용 카드 — 상세 내용(detail)이 있으면 프로젝트명이 상세 페이지 링크 */}
                 <ProjectCard
                   project={project}
                   selectedTechs={selectedTechs}
                   onSelectTech={onSelectTech}
-                  linkToDetail={project.status === 2}
+                  linkToDetail={Boolean(project.detail)}
                 />
               </article>
             ))}

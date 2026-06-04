@@ -38,10 +38,10 @@ function App() {
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
-  // 상세 페이지는 status 2인 프로젝트만 진입 허용
+  // 상세 페이지는 노출 상태(status 1)인 프로젝트만 진입 허용
   const detailProject =
     detailId !== null
-      ? projects.find((p) => p.id === detailId && p.status === 2) ?? null
+      ? projects.find((p) => p.id === detailId && p.status === 1) ?? null
       : null;
 
   // 상세 진입 시 맨 위로, 목록 복귀 시 해당 섹션 앵커로 스크롤

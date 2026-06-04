@@ -7,7 +7,7 @@ export interface TechSkill {
   level: SkillLevel;
 }
 
-/** 프로젝트 노출 상태: 0 숨김 · 1 목록 노출 · 2 목록 + 상세 페이지 노출 */
+/** 프로젝트 노출 상태: 0 숨김 · 1 노출(목록 + 상세 페이지) · 2 보관(작성 중, 어디에도 노출 안 함) */
 export type ProjectStatus = 0 | 1 | 2;
 
 /** 참여 프로젝트 */
@@ -19,10 +19,10 @@ export interface Project {
   roles: string[];
   /** 수행 회사명 */
   company: string;
-  /** 노출 상태 (0: 숨김, 1: 목록, 2: 목록 + 상세) */
+  /** 노출 상태 (0: 숨김, 1: 목록 + 상세, 2: 보관) */
   status: ProjectStatus;
   summary: string;
-  /** 상세 페이지 하단 '상세'란에 표시할 긴 설명 (status 2 프로젝트 권장) */
+  /** 상세 페이지 하단 '상세'란에 표시할 긴 설명 — 있으면 목록에서 프로젝트명이 상세 링크가 됨 */
   detail?: string;
   /** 주요 성과·담당 업무 */
   highlights: string[];

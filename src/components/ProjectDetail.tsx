@@ -3,7 +3,7 @@ import { ProjectCard } from './ProjectCard';
 import './ProjectDetail.css';
 
 interface ProjectDetailProps {
-  /** 표시할 프로젝트 (status 2만 진입 가능 — 라우팅은 App에서 처리) */
+  /** 표시할 프로젝트 (status 1만 진입 가능 — 라우팅은 App에서 처리) */
   project: Project;
 }
 

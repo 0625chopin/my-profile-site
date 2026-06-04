@@ -2,7 +2,7 @@ import type { Project } from '../types';
 
 /**
  * 참여 프로젝트 샘플 데이터 — 실제 프로젝트로 교체해서 사용
- * status: 0 숨김 · 1 목록 노출 · 2 목록 + 상세 페이지 노출
+ * status: 0 숨김 · 1 노출(목록 + 상세) · 2 보관(작성 중, 노출 안 함)
  */
 export const projects: Project[] = [
   {
@@ -11,7 +11,7 @@ export const projects: Project[] = [
     period: '2024.03 ~ 2025.01',
     roles: ['풀스택 개발', 'API/Interface', 'Batch'],
     company: '서플러스글로벌',
-    status: 2,
+    status: 1,
     summary:
       '반도체, 디스플레이제조용기계 B2C, B2B 커머스 웹사이트 신규 개발 프로젝트에서 Front office 에서 회원 파트 및 API/Interface, Batch 개발을 담당  성공적으로 프로젝트 오픈 했습니다. ',
     detail:
