@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { projects } from '../data/projects';
-import { RadarChart } from './RadarChart';
+import { ProjectCard } from './ProjectCard';
 import './ProjectSlider.css';
 
 interface ProjectSliderProps {
@@ -35,55 +35,13 @@ export function ProjectSlider({ selectedTechs, onSelectTech }: ProjectSliderProp
           <div className="slider-track" style={{ transform: `translateX(-${index * 100}%)` }}>
             {visibleProjects.map((project) => (
               <article key={project.id} className="slide">
-                <div className="slide-card">
-                  <div className="slide-info">
-                    <div className="slide-meta">
-                      <span className="slide-period">{project.period}</span>
-                      {project.roles.map((role) => (
-                        <span key={role} className="slide-role">
-                          {role}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* 프로젝트명: status 2면 상세 페이지로 이동 */}
-                    {project.status === 2 ? (
-                      <h3 className="slide-title">
-                        <a href={`#project/${project.id}`} className="slide-title-link">
-                          {project.title}
-                        </a>
-                      </h3>
-                    ) : (
-                      <h3 className="slide-title">{project.title}</h3>
-                    )}
-                    <p className="slide-summary">{project.summary}</p>
-
-                    <ul className="slide-highlights">
-                      {project.highlights.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-
-                    {/* 기술 태그: 클릭 시 전체 기술 스택 칩과 함께 선택/해제 */}
-                    <div className="slide-tags">
-                      {project.techStack.map((tech) => (
-                        <button
-                          key={tech.name}
-                          type="button"
-                          className={`slide-tag${selectedTechs.includes(tech.name) ? ' is-highlighted' : ''}`}
-                          aria-pressed={selectedTechs.includes(tech.name)}
-                          onClick={() => onSelectTech(tech.name)}
-                        >
-                          {tech.name}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="slide-chart">
-                    <RadarChart skills={project.techStack} highlightedSkills={selectedTechs} />
-                  </div>
-                </div>
+                {/* 공용 카드 — status 2면 프로젝트명이 상세 페이지 링크 */}
+                <ProjectCard
+                  project={project}
+                  selectedTechs={selectedTechs}
+                  onSelectTech={onSelectTech}
+                  linkToDetail={project.status === 2}
+                />
               </article>
             ))}
           </div>

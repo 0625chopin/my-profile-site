@@ -1,5 +1,5 @@
 import type { Project } from '../types';
-import { RadarChart } from './RadarChart';
+import { ProjectCard } from './ProjectCard';
 import './ProjectDetail.css';
 
 interface ProjectDetailProps {
@@ -7,7 +7,7 @@ interface ProjectDetailProps {
   project: Project;
 }
 
-/** 참여 프로젝트 상세 페이지: 기간 · 역할 · 회사명 · 프로젝트명 · 사용기술 · 설명 · 성과 */
+/** 참여 프로젝트 상세 페이지: 메인과 동일한 카드 + 하단 상세 내용 + 성과 */
 export function ProjectDetail({ project }: ProjectDetailProps) {
   return (
     <section className="project-detail section">
@@ -20,51 +20,28 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           프로젝트 목록으로
         </a>
 
-        <header className="detail-head">
-          <span className="detail-company">{project.company}</span>
-          <h1 className="detail-title">{project.title}</h1>
-          <div className="detail-meta">
-            <span className="detail-period">{project.period}</span>
-            {project.roles.map((role) => (
-              <span key={role} className="detail-role">
-                {role}
-              </span>
+        {/* 카드에는 없는 수행 회사명만 카드 위에 표시 */}
+        <span className="detail-company">{project.company}</span>
+
+        {/* 메인 페이지 슬라이더와 완전히 동일한 프로젝트 카드 */}
+        <ProjectCard project={project} />
+
+        {/* 하단: 상세 내용 → 성과 순서로 표시 */}
+        {project.detail && (
+          <section className="detail-block">
+            <h2 className="detail-block-title">상세 내용</h2>
+            <p className="detail-text">{project.detail}</p>
+          </section>
+        )}
+
+        <section className="detail-block">
+          <h2 className="detail-block-title">성과</h2>
+          <ul className="detail-highlights">
+            {project.highlights.map((item) => (
+              <li key={item}>{item}</li>
             ))}
-          </div>
-        </header>
-
-        <div className="detail-body">
-          <div className="detail-info">
-            <section className="detail-block">
-              <h2 className="detail-block-title">프로젝트 설명</h2>
-              <p className="detail-summary">{project.summary}</p>
-            </section>
-
-            <section className="detail-block">
-              <h2 className="detail-block-title">성과</h2>
-              <ul className="detail-highlights">
-                {project.highlights.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </section>
-
-            <section className="detail-block">
-              <h2 className="detail-block-title">사용 기술</h2>
-              <div className="detail-tags">
-                {project.techStack.map((tech) => (
-                  <span key={tech.name} className="detail-tag">
-                    {tech.name}
-                  </span>
-                ))}
-              </div>
-            </section>
-          </div>
-
-          <div className="detail-chart">
-            <RadarChart skills={project.techStack} />
-          </div>
-        </div>
+          </ul>
+        </section>
       </div>
     </section>
   );

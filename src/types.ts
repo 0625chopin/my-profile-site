@@ -22,6 +22,8 @@ export interface Project {
   /** 노출 상태 (0: 숨김, 1: 목록, 2: 목록 + 상세) */
   status: ProjectStatus;
   summary: string;
+  /** 상세 페이지 하단 '상세'란에 표시할 긴 설명 (status 2 프로젝트 권장) */
+  detail?: string;
   /** 주요 성과·담당 업무 */
   highlights: string[];
   /** 레이더 차트에 표시할 기술 스택 (3~6개 권장) */

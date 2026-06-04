@@ -1,4 +1,4 @@
-/* 프로젝트 상세 페이지 — 슬라이더 카드와 동일한 디자인 토큰 사용 */
+/* 프로젝트 상세 페이지 — 메인과 동일한 카드(ProjectCard.css) + 하단 상세/성과 박스 */
 .project-detail {
   /* 고정 헤더에 가려지지 않도록 상단 여백 확보 */
   padding-top: calc(var(--header-height) + var(--space-6));
@@ -21,68 +21,24 @@
   color: var(--accent);
 }
 
-/* 상단: 회사명 + 프로젝트명 + 기간/역할 */
-.detail-head {
-  margin-bottom: var(--space-6);
-}
-
+/* 수행 회사명 — 카드에는 없는 정보라 카드 위에 표시 */
 .detail-company {
   display: block;
   color: var(--accent);
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
-.detail-title {
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: var(--space-4);
-}
-
-.detail-meta {
-  display: flex;
-  gap: var(--space-2);
-  flex-wrap: wrap;
-}
-
-.detail-period,
-.detail-role {
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
-}
-
-.detail-period {
-  color: var(--text-muted);
-  background-color: var(--surface-2);
-}
-
-.detail-role {
-  color: var(--accent);
-  background-color: var(--accent-soft);
-}
-
-/* 본문: 좌측 정보 / 우측 레이더 차트 */
-.detail-body {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: var(--space-6);
-  align-items: start;
+/* 카드 하단: '상세 내용' / '성과' 박스 — 카드와 동일한 표면 스타일 */
+.detail-block {
+  margin-top: var(--space-6);
   padding: var(--space-6);
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
-}
-
-.detail-info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
 }
 
 .detail-block-title {
@@ -92,8 +48,9 @@
   color: var(--accent);
 }
 
-.detail-summary {
+.detail-text {
   color: var(--text-muted);
+  line-height: 1.8;
 }
 
 /* 성과 목록 */
@@ -120,31 +77,9 @@
   background-color: var(--accent);
 }
 
-/* 사용 기술 태그 */
-.detail-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.detail-tag {
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding: var(--space-1) var(--space-3);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  color: var(--text-muted);
-}
-
-.detail-chart {
-  display: flex;
-  justify-content: center;
-}
-
 @media (max-width: 820px) {
-  /* 모바일: 정보/차트 세로 스택 */
-  .detail-body {
-    grid-template-columns: 1fr;
+  /* 모바일: 하단 박스 여백 축소 */
+  .detail-block {
     padding: var(--space-5);
   }
 }
