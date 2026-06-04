@@ -1,32 +1,40 @@
 import type { Project } from '../types';
 
-/** 참여 프로젝트 샘플 데이터 — 실제 프로젝트로 교체해서 사용 */
+/**
+ * 참여 프로젝트 샘플 데이터 — 실제 프로젝트로 교체해서 사용
+ * status: 0 숨김 · 1 목록 노출 · 2 목록 + 상세 페이지 노출
+ */
 export const projects: Project[] = [
   {
     id: 'commerce-platform',
-    title: '커머스 플랫폼 리뉴얼',
+    title: 'Surplus global e-commerce platform',
     period: '2024.03 ~ 2025.01',
-    role: '프론트엔드 리드',
+    roles: ['풀스택 개발', 'API/Interface', 'Batch'],
+    company: '서플러스글로벌',
+    status: 2,
     summary:
-      '월 100만 방문자 규모의 커머스 웹을 React + TypeScript 기반으로 전면 리뉴얼했습니다. 디자인 시스템을 구축하고 핵심 페이지 성능을 개선했습니다.',
+      '반도체, 디스플레이제조용기계 B2C, B2B 커머스 웹사이트 신규 개발 프로젝트에서 Front office 에서 회원 파트 및 API/Interface, Batch 개발을 담당  성공적으로 프로젝트 오픈 했습니다. ',
     highlights: [
-      'LCP 4.2초 → 1.8초로 개선 (이미지 최적화, 코드 스플리팅)',
-      '공통 컴포넌트 40여 종의 디자인 시스템 구축',
-      '주문·결제 플로우 A/B 테스트로 전환율 12% 향상',
+      'Jwt 토큰 인증 및 권한 관리',
+      'Redis 토큰 저장 및 캐싱',
+      'Api/Interface, Batch 개발',
+      '외부 Library 연동 및 활용'
     ],
     techStack: [
-      { name: 'React', level: 5 },
-      { name: 'TypeScript', level: 4 },
-      { name: 'Next.js', level: 4 },
-      { name: 'GraphQL', level: 3 },
-      { name: 'Testing', level: 4 },
+      { name: 'Vue3', level: 3 },
+      { name: 'Spring', level: 4 },
+      { name: 'Api/Interface', level: 5 },
+      { name: 'Batch', level: 5 },
+      { name: 'MsSQL', level: 4 },
     ],
   },
   {
     id: 'admin-dashboard',
     title: '실시간 관리자 대시보드',
     period: '2023.06 ~ 2024.02',
-    role: '풀스택 개발',
+    roles: ['풀스택 개발'],
+    company: '샘플컴퍼니',
+    status: 2,
     summary:
       '운영 지표를 실시간으로 모니터링하는 사내 대시보드를 개발했습니다. WebSocket 기반 실시간 갱신과 대용량 차트 렌더링을 담당했습니다.',
     highlights: [
@@ -46,7 +54,9 @@ export const projects: Project[] = [
     id: 'mobile-banking',
     title: '모바일 뱅킹 앱',
     period: '2022.04 ~ 2023.05',
-    role: '프론트엔드 개발',
+    roles: ['프론트엔드 개발'],
+    company: '샘플뱅크',
+    status: 1,
     summary:
       'React Native 기반 모바일 뱅킹 앱의 계좌 조회·이체 모듈을 개발했습니다. 보안 요구사항을 준수하면서 네이티브 수준의 UX를 구현했습니다.',
     highlights: [
@@ -66,7 +76,9 @@ export const projects: Project[] = [
     id: 'ai-chatbot',
     title: 'AI 고객상담 챗봇',
     period: '2025.02 ~ 진행 중',
-    role: '백엔드 개발',
+    roles: ['백엔드 개발'],
+    company: '샘플에이아이',
+    status: 2,
     summary:
       'LLM 기반 고객상담 챗봇 서비스의 백엔드를 개발하고 있습니다. RAG 파이프라인 설계와 응답 품질 평가 체계를 담당합니다.',
     highlights: [

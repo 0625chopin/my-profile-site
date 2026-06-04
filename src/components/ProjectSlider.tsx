@@ -6,12 +6,17 @@ import './ProjectSlider.css';
 interface ProjectSliderProps {
   /** 기술 스택 섹션에서 선택된 기술명 목록 — 일치하는 태그·차트 라벨을 강조 */
   selectedTechs: string[];
+  /** 기술 태그 클릭 핸들러 — 전체 기술 스택 칩 선택과 양방향 연동 */
+  onSelectTech: (name: string) => void;
 }
 
+/** 노출 대상 프로젝트 (status 1: 목록, 2: 목록 + 상세) */
+const visibleProjects = projects.filter((project) => project.status !== 0);
+
 /** 참여 프로젝트를 한 장씩 보여주는 슬라이더 (이전/다음 + 도트 + 카운터) */
-export function ProjectSlider({ selectedTechs }: ProjectSliderProps) {
+export function ProjectSlider({ selectedTechs, onSelectTech }: ProjectSliderProps) {
   const [index, setIndex] = useState(0);
-  const count = projects.length;
+  const count = visibleProjects.length;
 
   // 순환 이동: 마지막에서 다음 → 처음, 처음에서 이전 → 마지막
   const goPrev = () => setIndex((i) => (i - 1 + count) % count);
@@ -28,15 +33,29 @@ export function ProjectSlider({ selectedTechs }: ProjectSliderProps) {
         <div className="slider">
           {/* 트랙: index에 따라 가로로 이동 */}
           <div className="slider-track" style={{ transform: `translateX(-${index * 100}%)` }}>
-            {projects.map((project) => (
+            {visibleProjects.map((project) => (
               <article key={project.id} className="slide">
                 <div className="slide-card">
                   <div className="slide-info">
                     <div className="slide-meta">
                       <span className="slide-period">{project.period}</span>
-                      <span className="slide-role">{project.role}</span>
+                      {project.roles.map((role) => (
+                        <span key={role} className="slide-role">
+                          {role}
+                        </span>
+                      ))}
                     </div>
-                    <h3 className="slide-title">{project.title}</h3>
+
+                    {/* 프로젝트명: status 2면 상세 페이지로 이동 */}
+                    {project.status === 2 ? (
+                      <h3 className="slide-title">
+                        <a href={`#project/${project.id}`} className="slide-title-link">
+                          {project.title}
+                        </a>
+                      </h3>
+                    ) : (
+                      <h3 className="slide-title">{project.title}</h3>
+                    )}
                     <p className="slide-summary">{project.summary}</p>
 
                     <ul className="slide-highlights">
@@ -45,15 +64,18 @@ export function ProjectSlider({ selectedTechs }: ProjectSliderProps) {
                       ))}
                     </ul>
 
-                    {/* 기술 태그: 기술 스택 섹션에서 선택한 기술과 일치하면 강조 */}
+                    {/* 기술 태그: 클릭 시 전체 기술 스택 칩과 함께 선택/해제 */}
                     <div className="slide-tags">
                       {project.techStack.map((tech) => (
-                        <span
+                        <button
                           key={tech.name}
+                          type="button"
                           className={`slide-tag${selectedTechs.includes(tech.name) ? ' is-highlighted' : ''}`}
+                          aria-pressed={selectedTechs.includes(tech.name)}
+                          onClick={() => onSelectTech(tech.name)}
                         >
                           {tech.name}
-                        </span>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -75,7 +97,7 @@ export function ProjectSlider({ selectedTechs }: ProjectSliderProps) {
             </button>
 
             <div className="slider-dots" role="tablist" aria-label="프로젝트 선택">
-              {projects.map((project, i) => (
+              {visibleProjects.map((project, i) => (
                 <button
                   key={project.id}
                   type="button"

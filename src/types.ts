@@ -7,12 +7,20 @@ export interface TechSkill {
   level: SkillLevel;
 }
 
+/** 프로젝트 노출 상태: 0 숨김 · 1 목록 노출 · 2 목록 + 상세 페이지 노출 */
+export type ProjectStatus = 0 | 1 | 2;
+
 /** 참여 프로젝트 */
 export interface Project {
   id: string;
   title: string;
   period: string;
-  role: string;
+  /** 수행 역할 목록 (예: ['풀스택 개발', 'Batch 개발']) */
+  roles: string[];
+  /** 수행 회사명 */
+  company: string;
+  /** 노출 상태 (0: 숨김, 1: 목록, 2: 목록 + 상세) */
+  status: ProjectStatus;
   summary: string;
   /** 주요 성과·담당 업무 */
   highlights: string[];
