@@ -53,6 +53,15 @@
   line-height: 1.8;
 }
 
+/* 상세 내용 안에서 선택된 기술명 강조 — 기술 태그(is-highlighted)와 동일한 색감 */
+.detail-tech-highlight {
+  color: var(--accent);
+  background-color: var(--accent-soft);
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0 0.2em;
+}
+
 /* 성과 목록 */
 .detail-highlights {
   display: flex;

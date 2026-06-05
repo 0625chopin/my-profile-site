@@ -15,7 +15,7 @@ export const techCategories: TechCategory[] = [
     id: 'backend',
     label: 'Backend',
     description: '서버 · API · INTERFACE · BATCH',
-    items: ['JAVA', 'Spring', 'WebSocket', 'Socket', 'RestApi', 'Batch', 'Api/Interface'],
+    items: ['JAVA', 'Spring', 'WebSocket', 'Socket', 'RestApi', 'Batch', 'Api/Interface', 'Library'],
   },
   {
     id: 'database',

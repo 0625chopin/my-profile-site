@@ -59,7 +59,11 @@ function App() {
       <Header theme={theme} onToggleTheme={toggleTheme} />
       <main>
         {detailProject ? (
-          <ProjectDetail project={detailProject} />
+          <ProjectDetail
+            project={detailProject}
+            selectedTechs={selectedTechs}
+            onSelectTech={toggleTech}
+          />
         ) : (
           <>
             <Hero />

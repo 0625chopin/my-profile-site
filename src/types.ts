@@ -24,8 +24,10 @@ export interface Project {
   summary: string;
   /** 상세 페이지 하단 '상세'란에 표시할 긴 설명 — 있으면 목록에서 프로젝트명이 상세 링크가 됨 */
   detail?: string;
-  /** 주요 성과·담당 업무 */
+  /** 메인 카드에 표시할 요약 성과·담당 업무 */
   highlights: string[];
+  /** 상세 페이지 '성과'란 전용 목록 — 없으면 상세 페이지에서 성과란을 표시하지 않음 */
+  achievements?: string[];
   /** 레이더 차트에 표시할 기술 스택 (3~6개 권장) */
   techStack: TechSkill[];
 }
